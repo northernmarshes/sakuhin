@@ -1,0 +1,30 @@
+{% extends "artworks/base.html" %}}
+
+{% block content %}
+
+<p>Artworks:</p>
+
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Year</th>
+    <th>Medium</th>
+    <th>Dimensions</th>
+    <th>image</th>
+  </tr>
+  {% for artwork in artworks %}
+  <tr>
+    <td>{{ artwork.title }}</td>
+    <td>{{ artwork.artist }}</td>
+    <td>{{ artwork.year }}</td>
+    <td>{{ artwork.medium }}</td>
+    <td>{{ artwork.dimensions }}</td>
+    <td>{{ artwork.image }}</td>
+  </tr>
+  {% endfor %}
+
+  <a href="{% url "artworks:new_artwork" %}">Add new artwork</a>
+
+
+{% endblock content %}

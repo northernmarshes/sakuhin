@@ -1,0 +1,11 @@
+{% extends "artworks/base.html" %}}
+{% block content %}}
+  <p>Add new artwork:</p>
+  <form action="{% url "artworks:new_artwork" %}" method="post">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name="submit">Add the artwork</button>
+  </form>
+{% endblock content %}
+
+
