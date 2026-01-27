@@ -1,0 +1,11 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Data
+db.sqlite3
+
+# Other
+.env
+media/
