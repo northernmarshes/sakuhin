@@ -22,7 +22,9 @@ def new_artwork(request):
         # Else filling a form with POSTed data
         form = ArtworkForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            artwork = form.save(commit=False)
+            artwork.owner = request.user
+            artwork.save()
             return redirect("artworks:artworks")
 
     # Wyświetlanie pustego formularza
