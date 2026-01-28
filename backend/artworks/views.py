@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Artwork
 from .forms import ArtworkForm
 
@@ -7,12 +8,14 @@ def index(request):
     return render(request, "artworks/index.html")
 
 
+@login_required
 def artworks(request):
     artworks = Artwork.objects.order_by("created_at")
     context = {"artworks": artworks}
     return render(request, "artworks/artworks.html", context)
 
 
+@login_required
 def new_artwork(request):
     "Add new artwork"
     if request.method != "POST":

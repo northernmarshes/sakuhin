@@ -20,10 +20,16 @@
     <td>{{ artwork.year }}</td>
     <td>{{ artwork.medium }}</td>
     <td>{{ artwork.dimensions }}</td>
-    <td>{{ artwork.image }}</td>
-  </tr>
-  {% endfor %}
-
+    <td>
+      {% if artwork.image %}
+        <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" style="max-height:120px; object-fit:cover;">
+      {% else %}
+        no image
+      {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
   <a href="{% url "artworks:new_artwork" %}">Add new artwork</a>
 
 

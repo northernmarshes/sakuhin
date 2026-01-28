@@ -1,10 +1,16 @@
 <p>
   <a href="{% url 'artworks:index' %}">Artworks Archive</a>
-  <a href="{% url 'artworks:artworks' %}">Artworks</a>
+  <a href="{% url 'artworks:artworks' %}">My Data</a>
   {% if user.is_authenticated %}
     Hello, {{ user.username }}.
+    <form action="{% url "accounts:logout" %}" method="post">
+    {% csrf_token %}
+    <button name="submit">Logout</button>
   {% else %}
+    <a href="{% url "accounts:register" %}">Register</a>
     <a href="{% url "accounts:login" %}">Log in</a>
   {% endif %}
+
+    <hr />
+  {% block content %} {% endblock content %}
 </p>
-{% block content %} {% endblock content %}
