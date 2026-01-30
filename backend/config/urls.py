@@ -30,7 +30,7 @@ urlpatterns = [
         include("artworks.urls"),
     ),
     path(
-        "accoutns/",
+        "accounts/",
         include("accounts.urls"),
     ),
 ]

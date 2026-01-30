@@ -3,10 +3,10 @@ from . import views
 
 app_name = "artworks"
 urlpatterns = [
-    # Mainpage
+    # mainpage
     path("", views.index, name="index"),
-    # Artworks list
+    # artworks list
     path("artworks/", views.artworks, name="artworks"),
-    # New artwork
+    # new artwork
     path("new_artwork/", views.new_artwork, name="new_artwork"),
 ]

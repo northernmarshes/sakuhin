@@ -10,7 +10,7 @@ def index(request):
 
 @login_required
 def artworks(request):
-    artworks = Artwork.objects.order_by("created_at")
+    artworks = Artwork.objects.filter(owner=request.user).order_by("created_at")
     context = {"artworks": artworks}
     return render(request, "artworks/artworks.html", context)
 
@@ -32,4 +32,5 @@ def new_artwork(request):
 
     # Wyświetlanie pustego formularza
     context = {"form": form}
+    print("USER:", request.user, request.user.is_authenticated)
     return render(request, "artworks/new_artwork.html", context)
