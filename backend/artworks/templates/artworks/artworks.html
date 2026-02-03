@@ -1,36 +1,43 @@
 {% extends "artworks/base.html" %}}
-
 {% block content %}
-
-<p>Artworks:</p>
-
-<table border="1">
-  <tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>Year</th>
-    <th>Medium</th>
-    <th>Dimensions</th>
-    <th>image</th>
-  </tr>
-  {% for artwork in artworks %}
-  <tr>
-    <td>{{ artwork.title }}</td>
-    <td>{{ artwork.artist }}</td>
-    <td>{{ artwork.year }}</td>
-    <td>{{ artwork.medium }}</td>
-    <td>{{ artwork.dimensions }}</td>
-    <td>
-      {% if artwork.image %}
-        <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" style="max-height:120px; object-fit:cover;">
-      {% else %}
-        no image
-      {% endif %}
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
-  <a href="{% url "artworks:new_artwork" %}">Add new artwork</a>
-
-
+    <!-- <p>Artworks:</p> -->
+    <!-- <button type="button" class="btn">Base class</button> -->
+    <div class="d-flex justify-content-end">
+        <a href="{% url "artworks:new_artwork" %}" class="btn btn-secondary">Add new artwork</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Year</th>
+                    <th>Medium</th>
+                    <th>Dimensions</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artwork in artworks %}
+                    <tr>
+                        <th>{{ artwork.title }}</th>
+                        <th>{{ artwork.artist }}</th>
+                        <th>{{ artwork.year }}</th>
+                        <th>{{ artwork.medium }}</th>
+                        <th>{{ artwork.dimensions }}</th>
+                        <th>
+                            {% if artwork.image %}
+                                <img src="{{ artwork.image.url }}"
+                                     alt="{{ artwork.title }}"
+                                     style="max-height:120px;
+                                            object-fit:cover">
+                            {% else %}
+                                no image
+                            {% endif %}
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}
