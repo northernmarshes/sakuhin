@@ -1,0 +1,14 @@
+{% extends "artworks/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <form method="post"
+              action="{% url "accounts:register" %}"
+              class="row g-2 needs-validation"
+              novalidate>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-secondary">Register</button>
+        </form>
+    </div>
+{% endblock content %}

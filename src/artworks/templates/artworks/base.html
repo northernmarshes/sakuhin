@@ -1,14 +1,19 @@
 <!DOCTYPE html>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <html lang="pl">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Artwork Archive</title>
+        {% load static %}
         {% load django_bootstrap5 %}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+        <!--  CSS -->
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
     </head>
-    <body>
+    <body class="{% block body_class %}{% endblock %}">
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'artworks:index' %}">Archive</a>
@@ -25,6 +30,12 @@
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'artworks:artworks' %}">Artworks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'artworks:artworks' %}">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'artworks:artworks' %}">Movies</a>
                         </li>
                     </ul>
                     <!-- Account related links -->
@@ -52,12 +63,12 @@
                 </div>
             </div>
         </nav>
-        <main class="contiainer">
+        <main class="container">
             <div class="pb-2 mb-2 border-bottom">
                 {% block page_header %}
                 {% endblock page_header %}
             </div>
-            <div>
+            <div class="container py-4 px-3 px-md-4 px-lg-5">
                 {% block content %}
                 {% endblock content %}
             </div>

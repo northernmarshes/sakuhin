@@ -3,7 +3,16 @@
     <!-- <p>Artworks:</p> -->
     <!-- <button type="button" class="btn">Base class</button> -->
     <div class="d-flex justify-content-end">
-        <a href="{% url "artworks:new_artwork" %}" class="btn btn-secondary">Add new artwork</a>
+        <a href="{% url "artworks:new_artwork" %}"
+           class="btn btn-primary rounded-circle"
+           style="width: 50px;
+                  height: 50px;
+                  display: flex;
+                  background-color: gray;
+                  align-items: center;
+                  font-size: 2rem;
+                  border: 0;
+                  justify-content: center">+</a>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">
