@@ -37,6 +37,10 @@ urlpatterns = [
         "books/",
         include("books.urls"),
     ),
+    path(
+        "movies/",
+        include("movies.urls"),
+    ),
 ]
 
 if settings.DEBUG:

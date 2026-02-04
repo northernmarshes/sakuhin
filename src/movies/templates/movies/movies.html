@@ -1,10 +1,8 @@
 {% extends "artworks/base.html" %}}
 {% load django_bootstrap5 %}
 {% block content %}
-    <!-- <p>Artworks:</p> -->
-    <!-- <button type="button" class="btn">Base class</button> -->
     <div class="d-flex justify-content-end">
-        <a href="{% url "books:new_book" %}"
+        <a href="{% url "movies:new_movie" %}"
            class="btn btn-primary rounded-circle"
            style="width: 50px;
                   height: 50px;
@@ -19,24 +17,23 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Cover</th>
+                    <th>Poster</th>
                     <th>Title</th>
-                    <th>Author</th>
+                    <th>Director</th>
                     <th>Year</th>
-                    <th>ISBN</th>
-                    <th>Publisher</th>
-                    <th>Pages</th>
+                    <th>Genre</th>
+                    <th>Duration</th>
                     <th>Created</th>
                     <th>Modified</th>
                 </tr>
             </thead>
             <tbody>
-                {% for book in books %}
+                {% for movie in movies %}
                     <tr>
                         <th>
-                            {% if book.image %}
-                                <img src="{{ book.image.url }}"
-                                     alt="{{ book.title }}"
+                            {% if movie.image %}
+                                <img src="{{ movie.image.url }}"
+                                     alt="{{ movie.title }}"
                                      style="max-height:120px;
                                             object-fit:cover;
                                             display: block;
@@ -46,14 +43,11 @@
                                 no image
                             {% endif %}
                         </th>
-                        <th>{{ book.title }}</th>
-                        <th>{{ book.author }}</th>
-                        <th>{{ book.year }}</th>
-                        <th>{{ book.isbn }}</th>
-                        <th>{{ book.publisher }}</th>
-                        <th>{{ book.pages }}</th>
-                        <th>{{ book.created_at }}</th>
-                        <th>{{ book.updated_at }}</th>
+                        <th>{{ movie.title }}</th>
+                        <th>{{ movie.director }}</th>
+                        <th>{{ movie.year }}</th>
+                        <th>{{ movie.genre }}</th>
+                        <th>{{ movie.duration }}</th>
                     </tr>
                 {% endfor %}
             </tbody>

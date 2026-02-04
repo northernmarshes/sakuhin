@@ -1,0 +1,14 @@
+{% extends "artworks/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <a>Add a new book:</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form action="{% url "books:new_book" %}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-secondary">Add the book</button>
+        </form>
+    </div>
+{% endblock content %}
