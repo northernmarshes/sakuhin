@@ -33,6 +33,10 @@ urlpatterns = [
         "accounts/",
         include("accounts.urls"),
     ),
+    path(
+        "books/",
+        include("books.urls"),
+    ),
 ]
 
 if settings.DEBUG:

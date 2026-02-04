@@ -1,4 +1,5 @@
 {% extends "artworks/base.html" %}}
+{% load django_bootstrap5 %}
 {% block content %}
     <!-- <p>Artworks:</p> -->
     <!-- <button type="button" class="btn">Base class</button> -->
@@ -18,26 +19,24 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>Cover</th>
                     <th>Title</th>
-                    <th>Artist</th>
+                    <th>Author</th>
                     <th>Year</th>
-                    <th>Medium</th>
-                    <th>Dimensions</th>
-                    <th>Image</th>
+                    <th>ISBN</th>
+                    <th>Publisher</th>
+                    <th>Pages</th>
+                    <th>Created</th>
+                    <th>Modified</th>
                 </tr>
             </thead>
             <tbody>
-                {% for artwork in artworks %}
+                {% for book in books %}
                     <tr>
-                        <th>{{ artwork.title }}</th>
-                        <th>{{ artwork.artist }}</th>
-                        <th>{{ artwork.year }}</th>
-                        <th>{{ artwork.medium }}</th>
-                        <th>{{ artwork.dimensions }}</th>
                         <th>
-                            {% if artwork.image %}
-                                <img src="{{ artwork.image.url }}"
-                                     alt="{{ artwork.title }}"
+                            {% if book.image %}
+                                <img src="{{ book.image.url }}"
+                                     alt="{{ book.title }}"
                                      style="max-height:120px;
                                             object-fit:cover;
                                             display: block;
@@ -47,6 +46,14 @@
                                 no image
                             {% endif %}
                         </th>
+                        <th>{{ book.title }}</th>
+                        <th>{{ book.author }}</th>
+                        <th>{{ book.year }}</th>
+                        <th>{{ book.isbn }}</th>
+                        <th>{{ book.publisher }}</th>
+                        <th>{{ book.pages }}</th>
+                        <th>{{ book.created_at }}</th>
+                        <th>{{ book.updated_at }}</th>
                     </tr>
                 {% endfor %}
             </tbody>

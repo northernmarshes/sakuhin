@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     # My apps
     "artworks",
     "accounts",
+    "movies",
+    "books",
     # Extrnal apps
     "django_bootstrap5",
     # Django appls
