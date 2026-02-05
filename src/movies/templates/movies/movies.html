@@ -25,14 +25,15 @@
                     <th>Duration</th>
                     <th>Created</th>
                     <th>Modified</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for movie in movies %}
                     <tr>
-                        <th>
-                            {% if movie.image %}
-                                <img src="{{ movie.image.url }}"
+                        <td>
+                            {% if movie.poster %}
+                                <img src="{{ movie.poster.url }}"
                                      alt="{{ movie.title }}"
                                      style="max-height:120px;
                                             object-fit:cover;
@@ -42,12 +43,25 @@
                             {% else %}
                                 no image
                             {% endif %}
-                        </th>
-                        <th>{{ movie.title }}</th>
-                        <th>{{ movie.director }}</th>
-                        <th>{{ movie.year }}</th>
-                        <th>{{ movie.genre }}</th>
-                        <th>{{ movie.duration }}</th>
+                        </td>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.director }}</td>
+                        <td>{{ movie.year }}</td>
+                        <td>{{ movie.genre }}</td>
+                        <td>{{ movie.duration }}</td>
+                        <td>{{ movie.created_at|date:"Y-m-d" }}</td>
+                        <td>{{ movie.updated_at|date:"Y-m-d" }}</td>
+                        <td>
+                            <button class="btn btn-sm ">
+                            edit</a>
+                            <form method="post"
+                                  action="{% url 'movies:delete_movie' movie.pk %}"
+                                  style="display: inline"
+                                  onsubmit="return confirm('are you sure you want to delete {{ movie.title }}?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm ">delete</button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

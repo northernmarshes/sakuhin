@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Movie
+from django.contrib import messages
 from .forms import MovieForm
 
 
@@ -19,7 +20,7 @@ def new_movie(request):
         form = MovieForm()
     else:
         # Else filling a form with POSTed data
-        form = MovieForm(data=request.POST)
+        form = MovieForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             movie = form.save(commit=False)
             movie.owner = request.user
@@ -30,3 +31,14 @@ def new_movie(request):
     context = {"form": form}
     print("USER:", request.user, request.user.is_authenticated)
     return render(request, "movies/new_movie.html", context)
+
+
+@login_required
+def delete_movie(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+    if request.method == "POST":
+        movie.delete()
+        messages.success(request, "Movie deleted successfully!")
+        return redirect("movies:movies")
+    context = {"movies": movies}
+    return render(request, "movies/movies.html", context)

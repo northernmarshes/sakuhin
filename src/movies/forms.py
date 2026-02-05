@@ -13,3 +13,7 @@ class MovieForm(forms.ModelForm):
             "duration",
             "poster",
         ]
+        widgets = {
+            "year": forms.NumberInput(attrs={"min": 1888, "max": 2100}),
+            "duration": forms.NumberInput(attrs={"min": 1}),
+        }

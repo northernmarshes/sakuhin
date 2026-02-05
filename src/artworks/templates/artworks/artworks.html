@@ -18,23 +18,19 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Year</th>
                     <th>Medium</th>
                     <th>Dimensions</th>
-                    <th>Image</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for artwork in artworks %}
                     <tr>
-                        <th>{{ artwork.title }}</th>
-                        <th>{{ artwork.artist }}</th>
-                        <th>{{ artwork.year }}</th>
-                        <th>{{ artwork.medium }}</th>
-                        <th>{{ artwork.dimensions }}</th>
-                        <th>
+                        <td>
                             {% if artwork.image %}
                                 <img src="{{ artwork.image.url }}"
                                      alt="{{ artwork.title }}"
@@ -46,7 +42,23 @@
                             {% else %}
                                 no image
                             {% endif %}
-                        </th>
+                        </td>
+                        <td>{{ artwork.title }}</td>
+                        <td>{{ artwork.artist }}</td>
+                        <td>{{ artwork.year }}</td>
+                        <td>{{ artwork.medium }}</td>
+                        <td>{{ artwork.dimensions }}</td>
+                        <td>
+                            <button class="btn btn-sm ">
+                            edit</a>
+                            <form method="post"
+                                  action="{% url 'artworks:delete_artwork' artwork.pk %}"
+                                  style="display: inline"
+                                  onsubmit="return confirm('are you sure you want to delete {{ artwork.title }}?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm ">delete</button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

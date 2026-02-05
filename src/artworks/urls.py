@@ -9,4 +9,6 @@ urlpatterns = [
     path("artworks/", views.artworks, name="artworks"),
     # new artwork
     path("new_artwork/", views.new_artwork, name="new_artwork"),
+    # deleting an artwork
+    path("delete/<int:pk>/", views.delete_artwork, name="delete_artwork"),
 ]

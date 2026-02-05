@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Artwork
 from .forms import ArtworkForm
 
@@ -23,7 +24,7 @@ def new_artwork(request):
         form = ArtworkForm()
     else:
         # Else filling a form with POSTed data
-        form = ArtworkForm(data=request.POST)
+        form = ArtworkForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             artwork = form.save(commit=False)
             artwork.owner = request.user
@@ -34,3 +35,14 @@ def new_artwork(request):
     context = {"form": form}
     print("USER:", request.user, request.user.is_authenticated)
     return render(request, "artworks/new_artwork.html", context)
+
+
+@login_required
+def delete_artwork(request, pk):
+    movie = get_object_or_404(Artwork, pk=pk)
+    if request.method == "POST":
+        movie.delete()
+        messages.success(request, "artwork deleted successfully!")
+        return redirect("artworks:artworks")
+    context = {"artworks": artworks}
+    return render(request, "artworks/artworks.html", context)
