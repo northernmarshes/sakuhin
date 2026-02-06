@@ -23,11 +23,9 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>Year</th>
-                    <th>ISBN</th>
                     <th>Publisher</th>
                     <th>Pages</th>
                     <th>Created</th>
-                    <th>Modified</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -50,20 +48,18 @@
                         <td>{{ book.title }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.year }}</td>
-                        <td>{{ book.isbn }}</td>
                         <td>{{ book.publisher }}</td>
                         <td>{{ book.pages }}</td>
                         <td>{{ book.created_at|date:"Y-m-d" }}</td>
-                        <td>{{ book.updated_at|date:"Y-m-d" }}</td>
                         <td>
-                            <button class="btn btn-sm ">
-                            edit</a>
+                            <a href="{% url 'books:edit_book' book.pk %}"
+                               class="btn btn-outline-dark">edit</a>
                             <form method="post"
                                   action="{% url 'books:delete_book' book.pk %}"
                                   style="display: inline"
                                   onsubmit="return confirm('are you sure you want to delete {{ book.title }}?');">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm ">delete</button>
+                                <button type="submit" class="btn btn-outline-dark ">delete</button>
                             </form>
                         </td>
                     </tr>

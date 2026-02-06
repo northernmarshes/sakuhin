@@ -9,6 +9,8 @@ urlpatterns = [
     path("artworks/", views.artworks, name="artworks"),
     # new artwork
     path("new_artwork/", views.new_artwork, name="new_artwork"),
+    # editing an artwork
+    path("edit/<int:pk>/", views.edit_artwork, name="edit_artwork"),
     # deleting an artwork
     path("delete/<int:pk>/", views.delete_artwork, name="delete_artwork"),
 ]

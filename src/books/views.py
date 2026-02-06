@@ -34,10 +34,25 @@ def new_book(request):
 
 
 @login_required
+def edit_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method != "POST":
+        form = BookForm(instance=book)
+    else:
+        form = BookForm(instance=book, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Artwork updated successfully!")
+            return redirect("artworks:artworks")
+    context = {"form": form, "book": book}
+    return render(request, "books/edit_book.html", context)
+
+
+@login_required
 def delete_book(request, pk):
-    movie = get_object_or_404(Book, pk=pk)
+    book = get_object_or_404(Book, pk=pk)
     if request.method == "POST":
-        movie.delete()
+        book.delete()
         messages.success(request, "Book deleted successfully!")
         return redirect("books:books")
     context = {"books": books}

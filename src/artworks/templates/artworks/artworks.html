@@ -49,14 +49,14 @@
                         <td>{{ artwork.medium }}</td>
                         <td>{{ artwork.dimensions }}</td>
                         <td>
-                            <button class="btn btn-sm ">
-                            edit</a>
+                            <a href="{% url 'artworks:edit_artwork' artwork.pk %}"
+                               class="btn btn-outline-dark">edit</a>
                             <form method="post"
                                   action="{% url 'artworks:delete_artwork' artwork.pk %}"
                                   style="display: inline"
                                   onsubmit="return confirm('are you sure you want to delete {{ artwork.title }}?');">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm ">delete</button>
+                                <button type="submit" class="btn btn-outline-dark ">delete</button>
                             </form>
                         </td>
                     </tr>

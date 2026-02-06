@@ -1,0 +1,19 @@
+{% extends "artworks/base.html" %}}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class = "d-flex justify-content-center">
+        <h3>Edit: {{ book.title }}</h3>
+    </div>
+    <div class = "d-flex justify-content-center">
+        <form action="{% url "books:edit_book" book.pk %}"
+              method="post"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="d-flex justify-content-center gap-5">
+                <button type="submit" class="btn btn-outline-dark">Save changes</button>
+                <a href="{% url 'artworks:artworks' %}" class="btn btn-outline-dark">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

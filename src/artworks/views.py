@@ -38,10 +38,26 @@ def new_artwork(request):
 
 
 @login_required
+def edit_artwork(request, pk):
+    """Edit an artwork"""
+    artwork = get_object_or_404(Artwork, pk=pk, owner=request.user)
+    if request.method != "POST":
+        form = ArtworkForm(instance=artwork)
+    else:
+        form = ArtworkForm(instance=artwork, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Artwork updated successfully!")
+            return redirect("books:books")
+    context = {"form": form, "artwork": artwork}
+    return render(request, "artworks/edit_artwork.html", context)
+
+
+@login_required
 def delete_artwork(request, pk):
-    movie = get_object_or_404(Artwork, pk=pk)
+    artwork = get_object_or_404(Artwork, pk=pk)
     if request.method == "POST":
-        movie.delete()
+        artwork.delete()
         messages.success(request, "artwork deleted successfully!")
         return redirect("artworks:artworks")
     context = {"artworks": artworks}
