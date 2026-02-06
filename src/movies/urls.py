@@ -7,6 +7,8 @@ urlpatterns = [
     path("", views.movies, name="movies"),
     # new movie
     path("new_movie/", views.new_movie, name="new_movie"),
-    # deleting a movie
+    # edit a movie
+    path("edit/<int:pk>/", views.edit_movie, name="edit_movie"),
+    # delete a movie
     path("delete/<int:pk>/", views.delete_movie, name="delete_movie"),
 ]

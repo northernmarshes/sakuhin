@@ -52,14 +52,14 @@
                         <td>{{ movie.created_at|date:"Y-m-d" }}</td>
                         <td>{{ movie.updated_at|date:"Y-m-d" }}</td>
                         <td>
-                            <button class="btn btn-sm ">
-                            edit</a>
+                            <a href="{% url 'movies:edit_movie' movie.pk %}"
+                               class="btn btn-outline-dark">edit</a>
                             <form method="post"
                                   action="{% url 'movies:delete_movie' movie.pk %}"
                                   style="display: inline"
                                   onsubmit="return confirm('are you sure you want to delete {{ movie.title }}?');">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm ">delete</button>
+                                <button type="submit" class="btn btn-outline-dark">delete</button>
                             </form>
                         </td>
                     </tr>

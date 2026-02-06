@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Movie
@@ -31,6 +32,21 @@ def new_movie(request):
     context = {"form": form}
     print("USER:", request.user, request.user.is_authenticated)
     return render(request, "movies/new_movie.html", context)
+
+
+def edit_movie(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+    if request.method != "POST":
+        form = MovieForm(instance=movie)
+    else:
+        form = MovieForm(instance=movie, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Movie updated successfully!")
+            return redirect("books:books")
+
+    context = {"form": form, "movie": movie}
+    return render(request, "movies/edit_movie.html", context)
 
 
 @login_required

@@ -42,7 +42,7 @@ def edit_book(request, pk):
         form = BookForm(instance=book, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "Artwork updated successfully!")
+            messages.success(request, "Book updated successfully!")
             return redirect("artworks:artworks")
     context = {"form": form, "book": book}
     return render(request, "books/edit_book.html", context)
