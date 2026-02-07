@@ -17,6 +17,13 @@ def artworks(request):
 
 
 @login_required
+def artwork_detail(request, pk):
+    artwork = get_object_or_404(Artwork, pk=pk, owner=request.user)
+    context = {"artwork": artwork}
+    return render(request, "artworks/artwork_detail.html", context)
+
+
+@login_required
 def new_artwork(request):
     "Add new artwork"
     if request.method != "POST":
@@ -48,7 +55,7 @@ def edit_artwork(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "Artwork updated successfully!")
-            return redirect("books:books")
+            return redirect("artworks:artworks")
     context = {"form": form, "artwork": artwork}
     return render(request, "artworks/edit_artwork.html", context)
 

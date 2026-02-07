@@ -12,4 +12,5 @@ class ArtworkForm(forms.ModelForm):
             "year",
             "dimensions",
             "image",
+            "discription",
         ]

@@ -29,7 +29,8 @@
             </thead>
             <tbody>
                 {% for artwork in artworks %}
-                    <tr>
+                  <tr style="cursor: pointer;" 
+                      onclick="window.location='{% url 'artworks:artwork_detail' artwork.pk %}';">
                         <td>
                             {% if artwork.image %}
                                 <img src="{{ artwork.image.url }}"
