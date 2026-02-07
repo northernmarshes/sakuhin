@@ -13,6 +13,14 @@ def books(request):
 
 
 @login_required
+def book_details(request, pk):
+    """Display book details"""
+    book = get_object_or_404(Book, pk=pk, owner=request.user)
+    context = {"book": book}
+    return render(request, "books/book_details.html", context)
+
+
+@login_required
 def new_book(request):
     "Add new book"
     if request.method != "POST":

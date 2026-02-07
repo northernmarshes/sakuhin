@@ -17,10 +17,10 @@ def artworks(request):
 
 
 @login_required
-def artwork_detail(request, pk):
+def artwork_details(request, pk):
     artwork = get_object_or_404(Artwork, pk=pk, owner=request.user)
     context = {"artwork": artwork}
-    return render(request, "artworks/artwork_detail.html", context)
+    return render(request, "artworks/artwork_details.html", context)
 
 
 @login_required

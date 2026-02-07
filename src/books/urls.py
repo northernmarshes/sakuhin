@@ -11,4 +11,6 @@ urlpatterns = [
     path("edit/<int:pk>/", views.edit_book, name="edit_book"),
     # deleting a book
     path("delete/<int:pk>/", views.delete_book, name="delete_book"),
+    # book details
+    path("/<int:pk>/", views.book_details, name="book_details"),
 ]

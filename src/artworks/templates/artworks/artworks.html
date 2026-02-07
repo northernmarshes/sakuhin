@@ -21,16 +21,16 @@
                     <th>Image</th>
                     <th>Title</th>
                     <th>Artist</th>
-                    <th>Year</th>
                     <th>Medium</th>
                     <th>Dimensions</th>
+                    <th>Year</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for artwork in artworks %}
-                  <tr style="cursor: pointer;" 
-                      onclick="window.location='{% url 'artworks:artwork_detail' artwork.pk %}';">
+                    <tr style="cursor: pointer"
+                        onclick="window.location='{% url 'artworks:artwork_detail' artwork.pk %}';">
                         <td>
                             {% if artwork.image %}
                                 <img src="{{ artwork.image.url }}"
@@ -46,9 +46,9 @@
                         </td>
                         <td>{{ artwork.title }}</td>
                         <td>{{ artwork.artist }}</td>
-                        <td>{{ artwork.year }}</td>
                         <td>{{ artwork.medium }}</td>
                         <td>{{ artwork.dimensions }}</td>
+                        <td>{{ artwork.year }}</td>
                         <td>
                             <a href="{% url 'artworks:edit_artwork' artwork.pk %}"
                                class="btn btn-outline-dark">edit</a>

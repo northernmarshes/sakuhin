@@ -14,5 +14,5 @@ urlpatterns = [
     # deleting an artwork
     path("delete/<int:pk>/", views.delete_artwork, name="delete_artwork"),
     # artwork details
-    path("/<int:pk>/", views.artwork_detail, name="artwork_detail"),
+    path("/<int:pk>/", views.artwork_details, name="artwork_detail"),
 ]

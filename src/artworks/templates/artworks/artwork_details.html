@@ -1,0 +1,72 @@
+{% extends "artworks/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class="containter mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                {% if artwork.image %}
+                    <img src="{{ artwork.image.url }}"
+                         alt="{{ artwork.title }}"
+                         class="img-fluid shadow"
+                         style="width: 100%;
+                                max-height: 600px;
+                                object-fit: contain">
+                {% else %}
+                    <div class="alert alert-secondary text-container"
+                         style="text-align: center;
+                                background-color: white">
+                        <p>No image available</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h2>{{ artwork.title }}</h2>
+                <table class="table-borderless">
+                    <tr>
+                        <th>Artist:</th>
+                        <td>{{ artwork.artist }}</td>
+                    </tr>
+                    <tr>
+                        <th>Year:</th>
+                        <td>{{ artwork.year }}</td>
+                    </tr>
+                    <tr>
+                        <th>Medium:</th>
+                        <td>{{ artwork.medium }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dimensions:</th>
+                        <td>{{ artwork.dimensions }}</td>
+                    </tr>
+                    <tr>
+                        <th>Created:</th>
+                        <td>{{ artwork.created_at|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last updated:</th>
+                        <td>{{ artwork.updated_at|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                </table>
+                <div class="mt-4">
+                    <a href="{% url 'artworks:edit_artwork' artwork.pk %}"
+                       class="btn btn-outline-dark">edit</a>
+                    <form method="post"
+                          action="{% url 'artworks:delete_artwork' artwork.pk %}"
+                          style="display: inline"
+                          onsubmit="return confirm('are you sure you want to delete {{ artwork.title }}?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-dark ">delete</button>
+                    </form>
+                </div>
+            </div>
+            <div class="containter mt-4">
+                {% if artwork.discription %}
+                    <table class="table-borderless">
+                        <tr>
+                            <th>Discription:</th>
+                            <td>{{ artwork.discription }}</td>
+                        </tr>
+                    </table>
+                {% endif %}
+            </div>
+        {% endblock content %}
