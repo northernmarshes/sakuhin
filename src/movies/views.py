@@ -34,6 +34,13 @@ def new_movie(request):
     return render(request, "movies/new_movie.html", context)
 
 
+def movie_details(request, pk):
+    movie = get_object_or_404(Movie, pk=pk, owner=request.user)
+    context = {"movie": movie}
+    return render(request, "movies/movie_details.html", context)
+
+
+@login_required
 def edit_movie(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
     if request.method != "POST":

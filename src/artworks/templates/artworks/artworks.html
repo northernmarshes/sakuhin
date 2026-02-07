@@ -55,6 +55,7 @@
                             <form method="post"
                                   action="{% url 'artworks:delete_artwork' artwork.pk %}"
                                   style="display: inline"
+                                  onclick="event.stopPropagation()"
                                   onsubmit="return confirm('are you sure you want to delete {{ artwork.title }}?');">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-dark ">delete</button>

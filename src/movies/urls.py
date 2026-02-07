@@ -11,4 +11,6 @@ urlpatterns = [
     path("edit/<int:pk>/", views.edit_movie, name="edit_movie"),
     # delete a movie
     path("delete/<int:pk>/", views.delete_movie, name="delete_movie"),
+    # movie details
+    path("/<int:pk>/", views.movie_details, name="movie_details"),
 ]

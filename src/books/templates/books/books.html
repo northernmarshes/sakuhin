@@ -22,9 +22,8 @@
                     <th>Cover</th>
                     <th>Title</th>
                     <th>Author</th>
-                    <th>Year</th>
                     <th>Publisher</th>
-                    <th>Created</th>
+                    <th>Year</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -47,15 +46,15 @@
                         </td>
                         <td>{{ book.title }}</td>
                         <td>{{ book.author }}</td>
-                        <td>{{ book.year }}</td>
                         <td>{{ book.publisher }}</td>
-                        <td>{{ book.created_at|date:"Y-m-d" }}</td>
+                        <td>{{ book.year }}</td>
                         <td>
                             <a href="{% url 'books:edit_book' book.pk %}"
                                class="btn btn-outline-dark">edit</a>
                             <form method="post"
                                   action="{% url 'books:delete_book' book.pk %}"
                                   style="display: inline"
+                                  onclick="event.stopPropagation()"
                                   onsubmit="return confirm('are you sure you want to delete {{ book.title }}?');">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-dark ">delete</button>

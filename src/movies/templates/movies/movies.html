@@ -20,17 +20,16 @@
                     <th>Poster</th>
                     <th>Title</th>
                     <th>Director</th>
-                    <th>Year</th>
                     <th>Genre</th>
                     <th>Duration</th>
-                    <th>Created</th>
-                    <th>Modified</th>
+                    <th>Year</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for movie in movies %}
-                    <tr>
+                    <tr style="cursor: pointer"
+                        onclick="window.location='{% url 'movies:movie_details' movie.pk %}';">
                         <td>
                             {% if movie.poster %}
                                 <img src="{{ movie.poster.url }}"
@@ -46,17 +45,16 @@
                         </td>
                         <td>{{ movie.title }}</td>
                         <td>{{ movie.director }}</td>
-                        <td>{{ movie.year }}</td>
                         <td>{{ movie.genre }}</td>
                         <td>{{ movie.duration }}</td>
-                        <td>{{ movie.created_at|date:"Y-m-d" }}</td>
-                        <td>{{ movie.updated_at|date:"Y-m-d" }}</td>
+                        <td>{{ movie.year }}</td>
                         <td>
                             <a href="{% url 'movies:edit_movie' movie.pk %}"
                                class="btn btn-outline-dark">edit</a>
                             <form method="post"
                                   action="{% url 'movies:delete_movie' movie.pk %}"
                                   style="display: inline"
+                                  onclick="event.stopPropagation()"
                                   onsubmit="return confirm('are you sure you want to delete {{ movie.title }}?');">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-dark">delete</button>
