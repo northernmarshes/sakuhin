@@ -28,11 +28,11 @@ jobs:
       - name: Build exe
         run: |
           cd src
-          pyinstaller run_app.py ^
-            --onefile ^
-            --noconsole ^
-            --collect-all django ^
-            --add-data "media;media" ^
+          pyinstaller run_app.py `
+            --onefile `
+            --noconsole `
+            --collect-all django `
+            --add-data "media;media" `
             --add-data "db.sqlite3;."
 
       - uses: actions/upload-artifact@v4
