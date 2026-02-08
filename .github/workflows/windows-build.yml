@@ -1,0 +1,41 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Collect static
+        run: |
+          cd src
+          python manage.py collectstatic --noinput
+
+      - name: Build exe
+        run: |
+          cd src
+          pyinstaller run_app.py ^
+            --onefile ^
+            --noconsole ^
+            --collect-all django ^
+            --add-data "media;media" ^
+            --add-data "db.sqlite3;."
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: src/dist/run_app.exe
