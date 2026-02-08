@@ -21,6 +21,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# Folder where collectstatic collects all the files
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     "books",
     # Extrnal apps
     "django_bootstrap5",
+    "rest_framework",
     # Django appls
     "django.contrib.admin",
     "django.contrib.auth",
