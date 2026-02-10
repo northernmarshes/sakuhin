@@ -3,6 +3,8 @@
 Active development.
 Core features are being implemented and expanding.
 
+<img src="screenshots/01.jpg" width="800" alt="screenshot">
+
 #### Sakuhin - Artwork Cataloging App
 
 A lightweight local cataloging app for artists, collectors, and gallery owners.
@@ -41,13 +43,16 @@ Sakuhin (作品, Japanese) - work (e.g. book, film, painting, composition), piec
 
 #### Running Locally (Development Mode)
 
+- Install and source venv
+
 ```bash
+pip install --upgrade pip
 pip install -r requirements.txt
 cd src
 python manage.py migrate
 python manage.py runserver
 ```
 
-Open:
+- Open:
 
 <http://127.0.0.1:8000>

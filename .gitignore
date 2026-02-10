@@ -9,8 +9,8 @@ db.sqlite3
 # Other
 .env
 media/
-img/
 staticfiles/
+# img/
 
 # pyinstaller
 build/

@@ -3,27 +3,20 @@
 {% block content %}
     <div class="d-flex justify-content-end">
         <a href="{% url "movies:new_movie" %}"
-           class="btn btn-primary rounded-circle"
-           style="width: 50px;
-                  height: 50px;
-                  display: flex;
-                  background-color: gray;
-                  align-items: center;
-                  font-size: 2rem;
-                  border: 0;
-                  justify-content: center">+</a>
+           class="btn"
+           style="font-size: 2rem"><i class="bi bi-plus"></i></a>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Poster</th>
+                    <th></th>
                     <th>Title</th>
                     <th>Director</th>
                     <th>Genre</th>
                     <th>Duration</th>
                     <th>Year</th>
-                    <th>Actions</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,15 +42,16 @@
                         <td>{{ movie.duration }}</td>
                         <td>{{ movie.year }}</td>
                         <td>
-                            <a href="{% url 'movies:edit_movie' movie.pk %}"
-                               class="btn btn-outline-dark">edit</a>
+                            <a href="{% url 'movies:edit_movie' movie.pk %}" class="btn "><i class="bi bi-pencil-fill"></i></a>
                             <form method="post"
                                   action="{% url 'movies:delete_movie' movie.pk %}"
                                   style="display: inline"
-                                  onclick="event.stopPropagation()"
+                                  onclick="event.stoppropagation()"
                                   onsubmit="return confirm('are you sure you want to delete {{ movie.title }}?');">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-dark">delete</button>
+                                <button type="submit" class="btn">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>

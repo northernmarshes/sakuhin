@@ -16,7 +16,7 @@
     <body class="{% block body_class %}{% endblock %}">
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'artworks:index' %}">Archive</a>
+                <a class="navbar-brand" href="{% url 'artworks:index' %}">作品</a>
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
@@ -57,21 +57,23 @@
                     {% if user.is_authenticated %}
                         <form action="{% url 'accounts:logout' %}" method='post'>
                             {% csrf_token %}
-                            <button name='submit' class='btn btn-outline-secondary btn-sm'>Log out</button>
-                        </form>
-                    {% endif %}
-                </div>
+                            <button name='submit' class='btn'>
+                            Logout</i>
+                        </button>
+                    </form>
+                {% endif %}
             </div>
-        </nav>
-        <main class="container">
-            <div class="pb-2 mb-2 border-bottom">
-                {% block page_header %}
-                {% endblock page_header %}
-            </div>
-            <div class="container py-4 px-3 px-md-4 px-lg-5">
-                {% block content %}
-                {% endblock content %}
-            </div>
-        </main>
-    </body>
+        </div>
+    </nav>
+    <main class="container">
+        <!-- <div class="pb-2 mb-2 border-bottom"> -->
+        {% block page_header %}
+        {% endblock page_header %}
+    </div>
+    <div class="container py-4 px-3 px-md-4 px-lg-5">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</main>
+</body>
 </html>

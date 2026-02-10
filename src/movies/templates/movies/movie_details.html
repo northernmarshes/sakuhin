@@ -23,42 +23,45 @@
                 <h2>{{ movie.title }}</h2>
                 <table class="table-borderless">
                     <tr>
-                        <th>Director</th>
+                        <th class="pe-3">Director</th>
                         <td>{{ movie.director }}</td>
                     </tr>
                     <tr>
-                        <th>Year</th>
+                        <th class="pe-3">Year</th>
                         <td>{{ movie.year }}</td>
                     </tr>
                     <tr>
-                        <th>Genre</th>
+                        <th class="pe-3">Genre</th>
                         <td>{{ movie.genre }}</td>
                     </tr>
                     <tr>
-                        <th>Duration</th>
+                        <th class="pe-3">Duration</th>
                         <td>{{ movie.duration }}</td>
                     </tr>
                     <tr>
-                        <th>Created:</th>
+                        <th class="pe-3">Created:</th>
                         <td>{{ movie.created_at|date:"d.m.Y H:i" }}</td>
                     </tr>
                     <tr>
-                        <th>Last updated:</th>
+                        <th class="pe-3">Last updated:</th>
                         <td>{{ movie.updated_at|date:"d.m.Y H:i" }}</td>
                     </tr>
                 </table>
                 <div class="mt-4">
-                    <a href="{% url 'movies:edit_movie' movie.pk %}"
-                       class="btn btn-outline-dark">edit</a>
+                    <a href="{% url 'movies:edit_movie' movie.pk %}" class="btn "><i class="bi bi-pencil-fill"></i></a>
                     <form method="post"
                           action="{% url 'movies:delete_movie' movie.pk %}"
                           style="display: inline"
-                          onsubmit="return confirm('are you sure you want to delete {{ artwork.title }}?');">
+                          onclick="event.stoppropagation()"
+                          onsubmit="return confirm('are you sure you want to delete {{ movie.title }}?');">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-dark ">delete</button>
+                        <button type="submit" class="btn">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock content %}

@@ -4,27 +4,18 @@
     <!-- <p>Artworks:</p> -->
     <!-- <button type="button" class="btn">Base class</button> -->
     <div class="d-flex justify-content-end">
-        <a href="{% url "books:new_book" %}"
-           class="btn btn-primary rounded-circle"
-           style="width: 50px;
-                  height: 50px;
-                  display: flex;
-                  background-color: gray;
-                  align-items: center;
-                  font-size: 2rem;
-                  border: 0;
-                  justify-content: center">+</a>
+        <a href="{% url "books:new_book" %}" class="btn" style="font-size: 2rem"><i class="bi bi-plus"></i></a>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Cover</th>
+                    <th></th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Publisher</th>
                     <th>Year</th>
-                    <th>Actions</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,15 +40,16 @@
                         <td>{{ book.publisher }}</td>
                         <td>{{ book.year }}</td>
                         <td>
-                            <a href="{% url 'books:edit_book' book.pk %}"
-                               class="btn btn-outline-dark">edit</a>
+                            <a href="{% url 'books:edit_book' book.pk %}" class="btn "><i class="bi bi-pencil-fill"></i></a>
                             <form method="post"
                                   action="{% url 'books:delete_book' book.pk %}"
                                   style="display: inline"
-                                  onclick="event.stopPropagation()"
+                                  onclick="event.stoppropagation()"
                                   onsubmit="return confirm('are you sure you want to delete {{ book.title }}?');">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-dark ">delete</button>
+                                <button type="submit" class="btn">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>

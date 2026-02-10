@@ -23,46 +23,49 @@
                 <h2>{{ book.title }}</h2>
                 <table class="table-borderless">
                     <tr>
-                        <th>Author</th>
+                        <th class="pe-3">Author</th>
                         <td>{{ book.author }}</td>
                     </tr>
                     <tr>
-                        <th>Year</th>
+                        <th class="pe-3">Year</th>
                         <td>{{ book.year }}</td>
                     </tr>
                     <tr>
-                        <th>ISBN</th>
+                        <th class="pe-3">ISBN</th>
                         <td>{{ book.isbn }}</td>
                     </tr>
                     <tr>
-                        <th>Publisher</th>
+                        <th class="pe-3">Publisher</th>
                         <td>{{ book.publisher }}</td>
                     </tr>
                     <tr>
-                        <th>Pages</th>
+                        <th class="pe-3">Pages</th>
                         <td>{{ book.pages }}</td>
                     </tr>
                     <tr>
-                        <th>Created:</th>
+                        <th class="pe-3">Created:</th>
                         <td>{{ book.created_at|date:"d.m.Y H:i" }}</td>
                     </tr>
                     <tr>
-                        <th>Last updated:</th>
+                        <th class="pe-3">Last updated:</th>
                         <td>{{ book.updated_at|date:"d.m.Y H:i" }}</td>
                     </tr>
                 </table>
                 <div class="mt-4">
-                    <a href="{% url 'books:edit_book' book.pk %}"
-                       class="btn btn-outline-dark">edit</a>
+                    <a href="{% url 'books:edit_book' book.pk %}" class="btn "><i class="bi bi-pencil-fill"></i></a>
                     <form method="post"
                           action="{% url 'books:delete_book' book.pk %}"
                           style="display: inline"
+                          onclick="event.stoppropagation()"
                           onsubmit="return confirm('are you sure you want to delete {{ book.title }}?');">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-dark ">delete</button>
+                        <button type="submit" class="btn">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock content %}

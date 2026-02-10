@@ -23,50 +23,56 @@
                 <h2>{{ artwork.title }}</h2>
                 <table class="table-borderless">
                     <tr>
-                        <th>Artist:</th>
+                        <th class="pe-3">Artist:</th>
                         <td>{{ artwork.artist }}</td>
                     </tr>
                     <tr>
-                        <th>Year:</th>
+                        <th class="pe-3">Year:</th>
                         <td>{{ artwork.year }}</td>
                     </tr>
                     <tr>
-                        <th>Medium:</th>
+                        <th class="pe-3">Medium:</th>
                         <td>{{ artwork.medium }}</td>
                     </tr>
                     <tr>
-                        <th>Dimensions:</th>
+                        <th class="pe-3">Dimensions:</th>
                         <td>{{ artwork.dimensions }}</td>
                     </tr>
                     <tr>
-                        <th>Created:</th>
+                        <th class="pe-3">Created:</th>
                         <td>{{ artwork.created_at|date:"d.m.Y H:i" }}</td>
                     </tr>
                     <tr>
-                        <th>Last updated:</th>
+                        <th class="pe-3">Last updated:</th>
                         <td>{{ artwork.updated_at|date:"d.m.Y H:i" }}</td>
                     </tr>
                 </table>
                 <div class="mt-4">
-                    <a href="{% url 'artworks:edit_artwork' artwork.pk %}"
-                       class="btn btn-outline-dark">edit</a>
+                    <a href="{% url 'artworks:edit_artwork' artwork.pk %}" class="btn "><i class="bi bi-pencil-fill"></i></a>
                     <form method="post"
                           action="{% url 'artworks:delete_artwork' artwork.pk %}"
                           style="display: inline"
+                          onclick="event.stoppropagation()"
                           onsubmit="return confirm('are you sure you want to delete {{ artwork.title }}?');">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-dark ">delete</button>
+                        <button type="submit" class="btn">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </form>
                 </div>
             </div>
-            <div class="containter mt-4">
-                {% if artwork.discription %}
+            {% if artwork.discription %}
+                <div class="mt-4">
                     <table class="table-borderless">
                         <tr>
-                            <th>Discription:</th>
-                            <td>{{ artwork.discription }}</td>
+                            <thead>
+                                <th>Discription:</th>
+                            </thead>
+                            <tbody>
+                                <td>{{ artwork.discription }}</td>
+                            </tbody>
                         </tr>
                     </table>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
         {% endblock content %}
