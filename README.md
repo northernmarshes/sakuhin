@@ -3,7 +3,7 @@
 Active development.
 Core features are being implemented and expanding.
 
-<img src="screenshots/01.jpg" width="800" alt="screenshot">
+<img src="screenshots/01.png" width="800" alt="screenshot">
 
 #### Sakuhin - Artwork Cataloging App
 
@@ -24,7 +24,7 @@ Sakuhin (作品, Japanese) - work (e.g. book, film, painting, composition), piec
 - macOS
 - Windows
 
-#### Built for
+#### Designed for
 
 - Artists documenting their work
 - Private collectors
@@ -34,25 +34,36 @@ Sakuhin (作品, Japanese) - work (e.g. book, film, painting, composition), piec
 
 #### Tech Stack
 
-- Python
-- Django
-- Bootstrap5
-- SQLite
-- HTML
-- CSV
+- Python, Django, Bootstrap5, SQLite, HTML, CSV
 
 #### Running Locally (Development Mode)
 
-- Install and source venv
+##### 1. Create and activate virtual environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate      # macOS / Linux
+.venv\Scripts\activate         # Windows
+```
+
+##### 2. Install dependencies
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
-cd src
-python manage.py migrate
-python manage.py runserver
 ```
 
-- Open:
+##### 3. Apply Migrations
+
+```bash
+cd src
+python manage.py migrate
+```
+
+##### 4. Run development server
+
+```bash
+python manage.py runserver
+```
 
 <http://127.0.0.1:8000>
