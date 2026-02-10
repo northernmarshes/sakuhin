@@ -1,9 +1,9 @@
-### !Status
+#### !Status
 
 Active development.
 Core features are being implemented and expanding.
 
-### Sakuhin - Artwork Cataloging App
+#### Sakuhin - Artwork Cataloging App
 
 A lightweight local cataloging app for artists, collectors, and gallery owners.
 Designed to manage and organize collections of:
@@ -16,13 +16,13 @@ The application runs locally and gives you full control over your data, with sim
 
 Sakuhin (作品, Japanese) - work (e.g. book, film, painting, composition), piece, production, opus.
 
-### Planned binary builds for
+#### Planned binary builds for
 
 - Linux
 - macOS
 - Windows
 
-### Built for
+#### Built for
 
 - Artists documenting their work
 - Private collectors
@@ -30,7 +30,7 @@ Sakuhin (作品, Japanese) - work (e.g. book, film, painting, composition), piec
 - Researchers and archivists
 - Anyone who needs a personal, structured media catalog
 
-### Tech Stack
+#### Tech Stack
 
 - Python
 - Django
@@ -39,14 +39,14 @@ Sakuhin (作品, Japanese) - work (e.g. book, film, painting, composition), piec
 - HTML
 - CSV
 
-### Running Locally (Development Mode)
+#### Running Locally (Development Mode)
 
-''' bash
+```bash
 pip install -r requirements.txt
 cd src
 python manage.py migrate
 python manage.py runserver
-'''
+```
 
 Open:
 
