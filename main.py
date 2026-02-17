@@ -4,28 +4,36 @@ import sys
 import os
 import threading
 import time
+import requests
 
-# Catalogue path
+# Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(BASE_DIR, "src")
+DB_DIR = os.path.join(BASE_DIR, "db")
 
 # Making sure database exists
-DB_DIR = os.path.join(BASE_DIR, "db")
 os.makedirs(DB_DIR, exist_ok=True)
 
 
 def run_django():
+    """Run Django server in the background."""
     os.chdir(SRC_DIR)
-    subprocess.run([sys.executable, "manage.py", "runserver", "127.0.0.1:8000"])
+    subprocess.Popen([sys.executable, "manage.py", "runserver", "127.0.0.1:8000"])
 
 
-# Starting django in a separete thread
+# Start Django in a separate thread
 thread = threading.Thread(target=run_django, daemon=True)
 thread.start()
 
-# Waiting
-time.sleep(2)
+# Wait untill server is up
+server_url = "http://127.0.0.1:8000"
+while True:
+    try:
+        requests.get(server_url)
+        break
+    except requests.exceptions.ConnectionError:
+        time.sleep(0.5)
 
-# Opening GUI in PyView
-webview.create_window("Sakuhin", "http://127.0.0.1:8000")
+# Open GUI in PyWebView
+webview.create_window("Sakuhin", server_url)
 webview.start()
