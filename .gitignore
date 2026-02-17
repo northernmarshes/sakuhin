@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 
 # Data
+db/
 db.sqlite3
 
 # Other
@@ -15,3 +16,4 @@ staticfiles/
 # pyinstaller
 build/
 dist/
+*.spec
