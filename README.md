@@ -1,7 +1,7 @@
 ### !Status
 
-Active development.
-Core features are being implemented and expanding.
+Stable core functionalities.
+Data import/export: WIP.
 
 <img src="screenshots/01.png" width="500" alt="screenshot">
 
